@@ -41,8 +41,8 @@ export default {
         return {
             // 登录页面的登录数据对象
             loginForm:{
-                username:'',
-                password:''
+                username:'admin',
+                password:'123456'
             },
             //表单的验证规则对象
             loginFormRules:{
@@ -74,21 +74,28 @@ export default {
         },
         //点击登录按钮事务 1.对表单进行预验证,element-ui的validate （1.获取到表单的实例对象 ，使用ref+this.$refs 2.对实例对象使用element—ui自带的validate方法） 2.根据预验证结果判断是否移交数据 3根据返回的结果的状态码来判断是否登陆成功
         login(){
-            this.$refs.loginFormRef.validate(async valid=>{
-                if(!valid) return;
-                const {data:res} = await this.$http.post('login',this.loginForm);
-                // console.log(result);
-                //弹框效果 如果element-ui为全局引入可以直接使用$message，如果为按需导入则需要先引入弹框组件并在Vue上进行全局挂载
-                if(res.meta.status!=200) return this.$message.error('登陆失败！');
-                this.$message({message: '登录成功！',type: 'success'});
-                // 1．将登录成功之后的 token，保存到客户端的sessionStorage中
-                    // 1.1项目中出了登录之外的其他API接口，必须在登录之后才能访问
-                    //1.2 token只应在当前网站丁开期间生效，所以将 token保存在sessionStorage中
-                window.sessionStorage.setItem('token', res.data.token)
-                // 2．通过编程式导航跳转到后台主页，路由地址是/home
-                this.$router.push('/home')
+            // 模拟token
+            const {username,password}  = this.loginForm ;
+            if(username == 'admin'&& password == '123456') {
+                window.sessionStorage.setItem('token','Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9')
+            }
+            
+            // this.$refs.loginFormRef.validate(async valid=>{
+            //     if(!valid) return;
+            //     const {data:res} = await this.$http.post('login',this.loginForm);
+            //     // console.log(result);
+            //     //弹框效果 如果element-ui为全局引入可以直接使用$message，如果为按需导入则需要先引入弹框组件并在Vue上进行全局挂载
+            //     if(res.meta.status!=200) return this.$message.error('登陆失败！');
+            //     this.$message({message: '登录成功！',type: 'success'});
+            //     // 1．将登录成功之后的 token，保存到客户端的sessionStorage中
+            //         // 1.1项目中出了登录之外的其他API接口，必须在登录之后才能访问
+            //         //1.2 token只应在当前网站丁开期间生效，所以将 token保存在sessionStorage中
+            //     window.sessionStorage.setItem('token', res.data.token)
+            //     // 2．通过编程式导航跳转到后台主页，路由地址是/home
+            //     this.$router.push('/home')
 
-            })
+            // })
+            this.$router.push('/home')
         }
     }
 }

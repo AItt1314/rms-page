@@ -250,10 +250,29 @@ export default {
         pagenum: 1,
         pagesize: 2,
       },
+      //获取用户列表
       ResponseParameterObject: {
-        //获取用户列表
-        usersList: [],
-        total: 0,
+        usersList: [
+          {
+            id: 500,
+            role_name: "超级管理员",
+            username: "admin",
+            create_time: 1486720211,
+            mobile: "15178977897",
+            email: "adsfad@qq.com",
+            mg_state: true,
+          },
+          {
+            id: 502,
+            role_name: "超级管理员",
+            username: "linken",
+            create_time: 1486720211,
+            mobile: "15456479999",
+            email: "asdf@qq.com",
+            mg_state: false,
+          },
+        ],
+        total: 5,
         pagenum: 1,
       },
       //控制添加对话框的显示与隐藏
@@ -268,12 +287,7 @@ export default {
         mobile: "",
       },
       //修改用户提交请求参数对象
-      editRequestParameterList: {
-        id: "",
-        username: "",
-        email: "",
-        mobile: "",
-      },
+      editRequestParameterList: { id: "", username: "", email: "", mobile: "" },
       // 用户提交表单的验证规则
       addRules: {
         username: [
@@ -323,17 +337,8 @@ export default {
       allotDialogVisible: false,
       // 分配用户角色请求参数
       // 分配角色对话框的内容所需数据,
-      userInfo: {
-        id: "",
-        role_name: "",
-        username: "",
-      },
-      AssignUserRoleRequestParameters: {
-        //用户id
-        id: "",
-        //角色id
-        rid: "",
-      },
+      userInfo: { id: "", role_name: "", username: "" },
+      AssignUserRoleRequestParameters: { id: "", rid: "" },
       // 角色列表数据
       roleList: [],
       //下拉选择器收集到的角色id

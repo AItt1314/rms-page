@@ -205,22 +205,20 @@
       width="40%"
     >
       <span>
-          <!-- 树形控件 -->
+        <!-- 树形控件 -->
         <el-tree
           :data="allRightsTree"
           :props="TreeProps"
-           show-checkbox
-           node-key='id'
-           default-expand-all
-           :default-checked-keys='defKeys'
-           ref="RightsTreeRef"
+          show-checkbox
+          node-key="id"
+          default-expand-all
+          :default-checked-keys="defKeys"
+          ref="RightsTreeRef"
         ></el-tree>
       </span>
       <span slot="footer" class="dialog-footer">
         <el-button @click="privilegesDialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="SubmitRights"
-          >确定分配</el-button
-        >
+        <el-button type="primary" @click="SubmitRights">确定分配</el-button>
       </span>
     </el-dialog>
   </div>
@@ -231,7 +229,252 @@ export default {
   data() {
     return {
       // 角色列表
-      RolesList: [],
+      RolesList: [
+        {
+          id: 30,
+          roleName: "主管",
+          roleDesc: "技术负责人",
+          children: [
+            {
+              id: 101,
+              authName: "商品管理",
+              path: "goods",
+              children: [
+                {
+                  id: 104,
+                  authName: "商品列表",
+                  path: "goods",
+                  children: [{ id: 116, authName: "商品修改", path: "goods" }],
+                },
+                {
+                  id: 115,
+                  authName: "分类参数",
+                  path: "params",
+                  children: [
+                    { id: 142, authName: "获取参数列表", path: "categories" },
+                    { id: 143, authName: "创建商品参数", path: "categories" },
+                    { id: 144, authName: "删除商品参数", path: "categories" },
+                  ],
+                },
+                {
+                  id: 121,
+                  authName: "商品分类",
+                  path: "categories",
+                  children: [
+                    { id: 122, authName: "添加分类", path: "categories" },
+                    { id: 123, authName: "删除分类", path: "categories" },
+                    { id: 149, authName: "获取分类详情", path: "categories" },
+                  ],
+                },
+              ],
+            },
+            {
+              id: 102,
+              authName: "订单管理",
+              path: "orders",
+              children: [
+                {
+                  id: 107,
+                  authName: "订单列表",
+                  path: "orders",
+                  children: [{ id: 109, authName: "添加订单", path: "orders" }],
+                },
+              ],
+            },
+            {
+              id: 103,
+              authName: "权限管理",
+              path: "rights",
+              children: [
+                {
+                  id: 111,
+                  authName: "角色列表",
+                  path: "roles",
+                  children: [
+                    { id: 129, authName: "添加角色", path: "roles" },
+                    { id: 130, authName: "删除角色", path: "roles" },
+                    { id: 134, authName: "角色授权", path: "roles" },
+                    { id: 135, authName: "取消角色授权", path: "roles" },
+                    { id: 138, authName: "获取角色列表", path: "roles" },
+                    { id: 139, authName: "获取角色详情", path: "roles" },
+                    { id: 140, authName: "更新角色信息", path: "roles" },
+                    { id: 141, authName: "更新角色权限", path: "roles" },
+                  ],
+                },
+                {
+                  id: 112,
+                  authName: "权限列表",
+                  path: "rights",
+                  children: [{ id: 147, authName: "查看权限", path: "rights" }],
+                },
+              ],
+            },
+            {
+              id: 125,
+              authName: "用户管理",
+              path: "users",
+              children: [
+                {
+                  id: 110,
+                  authName: "用户列表",
+                  path: "users",
+                  children: [
+                    { id: 131, authName: "添加用户", path: "users" },
+                    { id: 132, authName: "删除用户", path: "users" },
+                    { id: 133, authName: "更新用户", path: "users" },
+                    { id: 136, authName: "获取用户详情", path: "users" },
+                    { id: 137, authName: "分配用户角色", path: "users" },
+                  ],
+                },
+              ],
+            },
+            {
+              id: 145,
+              authName: "数据统计",
+              path: "reports",
+              children: [
+                {
+                  id: 146,
+                  authName: "数据报表",
+                  path: "reports",
+                  children: [
+                    { id: 148, authName: "查看数据", path: "reports" },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 31,
+          roleName: "测试角色",
+          roleDesc: "测试角色描述",
+          children: [
+            {
+              id: 101,
+              authName: "商品管理",
+              path: "goods",
+              children: [
+                {
+                  id: 104,
+                  authName: "商品列表",
+                  path: "goods",
+                  children: [
+                    { id: 105, authName: "添加商品", path: "goods" },
+                    { id: 116, authName: "商品修改", path: "goods" },
+                    { id: 117, authName: "商品删除", path: "goods" },
+                  ],
+                },
+                {
+                  id: 115,
+                  authName: "分类参数",
+                  path: "params",
+                  children: [
+                    { id: 142, authName: "获取参数列表", path: "categories" },
+                    { id: 143, authName: "创建商品参数", path: "categories" },
+                    { id: 144, authName: "删除商品参数", path: "categories" },
+                  ],
+                },
+                {
+                  id: 121,
+                  authName: "商品分类",
+                  path: "categories",
+                  children: [
+                    { id: 122, authName: "添加分类", path: "categories" },
+                    { id: 123, authName: "删除分类", path: "categories" },
+                    { id: 149, authName: "获取分类详情", path: "categories" },
+                  ],
+                },
+              ],
+            },
+            {
+              id: 103,
+              authName: "权限管理",
+              path: "rights",
+              children: [
+                {
+                  id: 111,
+                  authName: "角色列表",
+                  path: "roles",
+                  children: [
+                    { id: 129, authName: "添加角色", path: "roles" },
+                    { id: 134, authName: "角色授权", path: "roles" },
+                    { id: 138, authName: "获取角色列表", path: "roles" },
+                  ],
+                },
+                {
+                  id: 112,
+                  authName: "权限列表",
+                  path: "rights",
+                  children: [{ id: 147, authName: "查看权限", path: "rights" }],
+                },
+              ],
+            },
+          ],
+        },
+        { id: 34, roleName: "测试角色2", roleDesc: "测试描述12", children: [] },
+        {
+          id: 39,
+          roleName: "大发送到",
+          roleDesc: "阿斯蒂芬",
+          children: [
+            {
+              id: 101,
+              authName: "商品管理",
+              path: "goods",
+              children: [
+                {
+                  id: 104,
+                  authName: "商品列表",
+                  path: "goods",
+                  children: [
+                    { id: 153, authName: "获取商品详情", path: "goods" },
+                  ],
+                },
+                {
+                  id: 121,
+                  authName: "商品分类",
+                  path: "categories",
+                  children: [
+                    { id: 122, authName: "添加分类", path: "categories" },
+                    { id: 123, authName: "删除分类", path: "categories" },
+                    { id: 149, authName: "获取分类详情", path: "categories" },
+                  ],
+                },
+              ],
+            },
+            {
+              id: 103,
+              authName: "权限管理",
+              path: "rights",
+              children: [
+                {
+                  id: 111,
+                  authName: "角色列表",
+                  path: "roles",
+                  children: [
+                    { id: 129, authName: "添加角色", path: "roles" },
+                    { id: 130, authName: "删除角色", path: "roles" },
+                    { id: 134, authName: "角色授权", path: "roles" },
+                    { id: 135, authName: "取消角色授权", path: "roles" },
+                    { id: 138, authName: "获取角色列表", path: "roles" },
+                    { id: 139, authName: "获取角色详情", path: "roles" },
+                    { id: 140, authName: "更新角色信息", path: "roles" },
+                    { id: 141, authName: "更新角色权限", path: "roles" },
+                  ],
+                },
+                {
+                  id: 112,
+                  authName: "权限列表",
+                  path: "rights",
+                  children: [{ id: 147, authName: "查看权限", path: "rights" }],
+                },
+              ],
+            },
+          ],
+        },
+        { id: 44, roleName: "testing", roleDesc: "testing12", children: [] },
+      ],
       //控制添加用户提示框的显示与隐藏
       AddDialogVisible: false,
       //控制编辑用户会话框的显示与隐藏
@@ -272,19 +515,13 @@ export default {
       },
       //   设置权限的所有数据，树形结构
       allRightsTree: [],
-    //  控制树形组件的标题和数据节点
-      TreeProps:{
-          children: 'children',
-          label: 'authName'
-      },
-    //   默认选中的节点
-    defKeys:[],
-    // 角色授权请求参数
-    RoleAuthorizationRequestParametersList:{
-        id:'',
-        rids:''
-    },
-    }
+      //  控制树形组件的标题和数据节点
+      TreeProps: {"children":"children","label":"authName"},
+      //   默认选中的节点
+      defKeys: [],
+      // 角色授权请求参数
+      RoleAuthorizationRequestParametersList: { id: "", rids: "" },
+    };
   },
   methods: {
     // 请求角色列表
@@ -365,7 +602,7 @@ export default {
     },
     // 分配权限按钮功能 1.实现分配权限会话框的展现 2.递归获取当前角色的所有三级节点 3获取权限树需要的数据 4在点击按钮后，递归获取所有三级节点前要将data中的当前三级权限节点数组清空
     async privilegesBtn(inf) {
-        this.RoleAuthorizationRequestParametersList.id=inf.id;
+      this.RoleAuthorizationRequestParametersList.id = inf.id;
       const { data: res } = await this.$http.get("rights/tree");
       if (res.meta.status != 200)
         return this.$message.error("获取角色数据权限失败");
@@ -373,34 +610,40 @@ export default {
       this.allRightsTree = res.data;
       this.$message.success(res.meta.msg);
       //清空三级权限数组
-      this.defKeys=[]
-    //   递归获取当前角色的所有三级节点
-      this.getLeafKeys(inf,this.defKeys)
+      this.defKeys = [];
+      //   递归获取当前角色的所有三级节点
+      this.getLeafKeys(inf, this.defKeys);
       this.privilegesDialogVisible = true;
     },
     //通过递归的形式获取角色所有的三级权限的id，并把其保存至data的数组中
-    getLeafKeys(node,arr){
-        //如果当前节点不包含children则它是三级节点，就直接将其id保存到arr中
-        if(!node.children){
-           return arr.push(node.id)
-        }
-        node.children.forEach(element => {
-            this.getLeafKeys(element,arr);
-        });
+    getLeafKeys(node, arr) {
+      //如果当前节点不包含children则它是三级节点，就直接将其id保存到arr中
+      if (!node.children) {
+        return arr.push(node.id);
+      }
+      node.children.forEach((element) => {
+        this.getLeafKeys(element, arr);
+      });
     },
     //提交分配权限的结果到服务器
-    async SubmitRights(){
-        // 获取树型结构的被半选的key值，返回一个数组
-        //获取所有选中的节点的key值，返回一个数组
-        // 利用展开运算符...合并数组
-        const keys = [...this.$refs.RightsTreeRef.getHalfCheckedKeys(),...this.$refs.RightsTreeRef.getCheckedKeys()];
-        this.RoleAuthorizationRequestParametersList.rids = keys.join(',');
-        const {data : res} = await this.$http.post(`roles/${this.RoleAuthorizationRequestParametersList.id}/rights`,this.RoleAuthorizationRequestParametersList);
-        if(res.meta.status!=200) return this.$message.error('分配权限失败');
-         this.$message.success(res.meta.msg);
-         this.privilegesDialogVisible = false;
-         this.getRolesList()
-    }
+    async SubmitRights() {
+      // 获取树型结构的被半选的key值，返回一个数组
+      //获取所有选中的节点的key值，返回一个数组
+      // 利用展开运算符...合并数组
+      const keys = [
+        ...this.$refs.RightsTreeRef.getHalfCheckedKeys(),
+        ...this.$refs.RightsTreeRef.getCheckedKeys(),
+      ];
+      this.RoleAuthorizationRequestParametersList.rids = keys.join(",");
+      const { data: res } = await this.$http.post(
+        `roles/${this.RoleAuthorizationRequestParametersList.id}/rights`,
+        this.RoleAuthorizationRequestParametersList
+      );
+      if (res.meta.status != 200) return this.$message.error("分配权限失败");
+      this.$message.success(res.meta.msg);
+      this.privilegesDialogVisible = false;
+      this.getRolesList();
+    },
   },
   created() {
     this.getRolesList();
