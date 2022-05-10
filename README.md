@@ -1,19 +1,3 @@
-# rms
+本页面仅作为预览，因为pages服务只能托管静态页面，页面数据为假数据，故页面功能无法实现
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+在实际页面中，采取了前后端分离的开发模式，可以进行数据的交互
